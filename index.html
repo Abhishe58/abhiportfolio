@@ -515,6 +515,9 @@
         font-size: 16px;
         word-break: break-all;
       }
+      #navIco {
+        display: none;
+      }
       @media (max-width: 670px) {
         .aboutCon {
           flex-direction: column;
@@ -531,13 +534,35 @@
           width: 100%;
         }
       }
+      @media (max-width: 562px) {
+        nav {
+          position: absolute;
+          top: 50px;
+          width: 96%;
+          justify-content: center;
+          backdrop-filter: blur(15px);
+          border-radius: 5px;
+          background-color: #000;
+          display: none;
+        }
+        #navIco {
+          display: block;
+          cursor: pointer;
+          background-color: transparent;
+          color: white;
+        }
+        #navIco ion-icon {
+          color: white;
+          font-size: 30px;
+        }
+      }
     </style>
   </head>
   <body>
     <section class="heroSection" id="home">
       <div class="header">
         <p>AM</p>
-        <nav>
+        <nav id="navCon">
           <a href="#home" class="navHref active">Home</a>
           <a href="#about" class="navHref">About Me</a>
           <a href="#skills" class="navHref">Skills</a>
@@ -545,6 +570,9 @@
           <a href="#contact" class="navHref">Contact Me</a>
           <a href="" class="resumeBut">Resume</a>
         </nav>
+        <p id="navIco" onclick="openNav()">
+          <ion-icon id="menuIcon" name="reorder-three-outline"></ion-icon>
+        </p>
       </div>
       <div class="herosectionCon">
         <h1>
@@ -593,6 +621,28 @@
             data to build smart, impactful solutions that make a real difference
             in the world.
           </p>
+          <!-- <p>
+            Hi, I'm Abhishek Mevada — a passionate Web Developer and Data
+            Science & Analytics enthusiast with a strong interest in Machine
+            Learning. I love building modern, user-friendly web applications
+            that not only look great but also deliver meaningful
+            functionality.<br /><br />My journey in technology began with a
+            curiosity to understand how things work behind the scenes — from web
+            interactions to the power of data in shaping decisions. Over time,
+            I’ve honed my skills in front-end and back-end development, data
+            visualization, and predictive analytics, allowing me to bridge the
+            gap between data and design.<br /><br />I thrive on solving complex
+            problems, whether it’s optimizing a website’s performance or
+            uncovering insights from large datasets. I enjoy working on projects
+            that challenge me to learn, innovate, and create value through clean
+            code and data-driven thinking.<br /><br />When I’m not coding or
+            exploring new tools, you’ll likely find me learning about emerging
+            technologies, contributing to open-source projects, or diving into a
+            good book about AI and innovation.<br /><br />My goal is to continue
+            growing as a developer and data scientist — combining creativity,
+            logic, and data to build intelligent solutions that make a
+            real-world impact.
+          </p> -->
         </div>
       </div>
     </section>
@@ -1050,6 +1100,19 @@
       );
 
       sections.forEach((section) => observer.observe(section));
+
+      function openNav() {
+        const navCon = document.getElementById("navCon");
+        const menuIcon = document.getElementById("menuIcon");
+
+        if (navCon.style.display == "flex") {
+          navCon.style.display = "none";
+          menuIcon.setAttribute("name", "reorder-three-outline");
+        } else {
+          navCon.style.display = "flex";
+          menuIcon.setAttribute("name", "close-outline");
+        }
+      }
     </script>
   </body>
 </html>
