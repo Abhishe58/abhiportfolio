@@ -11,14 +11,12 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <title>Abhishek Mevada</title>
     <style>
       * {
@@ -217,6 +215,24 @@
         gap: 10px;
         padding: 10px;
       }
+      .aboutBoxb p {
+        transition: 1s;
+        animation: catAppear linear;
+        animation-range: entry 0% cover 20%;
+        animation-timeline: view();
+      }
+      @keyframes catAppear {
+        from {
+          opacity: 0;
+          scale: 0.5;
+          /* transform: translateX(-100%); */
+        }
+        to {
+          opacity: 1;
+          scale: 1;
+          /* transform: translateX(-10%); */
+        }
+      }
       .skillSection {
         position: relative;
         min-height: 100vh;
@@ -258,6 +274,21 @@
         font-weight: 600;
         cursor: pointer;
         transition: 1s;
+        animation: proj linear;
+        animation-range: entry 0% cover 20%;
+        animation-timeline: view();
+      }
+      @keyframes proj {
+        from {
+          opacity: 0;
+          scale: 0.5;
+          transform: translateX(-100%);
+        }
+        to {
+          opacity: 1;
+          scale: 1;
+          transform: translateX(-10%);
+        }
       }
       /* .skillminBox:hover {
         border: 1px solid royalblue;
@@ -301,8 +332,21 @@
         padding: 5px;
         backdrop-filter: blur(15px);
         overflow: hidden; /* Ensures pseudo-element doesn't spill outside */
+        transition: 1s;
+        animation: profadeInjj linear;
+        animation-range: entry 0% cover 20%;
+        animation-timeline: view();
       }
-
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
       /* Soft blur “light” background */
       .projectBox::before {
         content: "";
@@ -518,6 +562,43 @@
       #navIco {
         display: none;
       }
+      #portfolioContainer {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+      }
+      #lodingContainer {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        background-color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+        color: white;
+      }
+      #lodingCount {
+        font-family: "Orbitron", sans-serif;
+        font-size: 170px;
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        color: royalblue;
+      }
+      .fade-out {
+        animation: fadeOutAni 0.6s ease forwards;
+      }
+
+      @keyframes fadeOutAni {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
       @media (max-width: 670px) {
         .aboutCon {
           flex-direction: column;
@@ -559,69 +640,75 @@
     </style>
   </head>
   <body>
-    <section class="heroSection" id="home">
-      <div class="header">
-        <p>AM</p>
-        <nav id="navCon">
-          <a href="#home" class="navHref active">Home</a>
-          <a href="#about" class="navHref">About Me</a>
-          <a href="#skills" class="navHref">Skills</a>
-          <a href="#projects" class="navHref">Project</a>
-          <a href="#contact" class="navHref">Contact Me</a>
-          <a href="" class="resumeBut">Resume</a>
-        </nav>
-        <p id="navIco" onclick="openNav()">
-          <ion-icon id="menuIcon" name="reorder-three-outline"></ion-icon>
-        </p>
-      </div>
-      <div class="herosectionCon">
-        <h1>
-          Hi, I'm <span class="h1spna">Abhishek</span> - <br /><span
-            id="text"
-            class="typing"
-            >Web Developer</span
-          >
-        </h1>
-        <p>
-          Building intelligent web experiences at the intersection of design,
-          data, and innovation.
-        </p>
-        <div class="herosecBox">
-          <a href="" class="heroBut">Projects</a>
-          <a href="" class="heroBut">Resume</a>
-          <a href="" class="heroBut">Contact Me</a>
+    <div id="lodingContainer">
+      <h1>Welcome to My Portfolio</h1>
+      <p>Loading my experience…</p>
+      <p id="lodingCount">0</p>
+    </div>
+    <div id="portfolioContainer">
+      <section class="heroSection" id="home">
+        <div class="header">
+          <p>AM</p>
+          <nav id="navCon">
+            <a href="#home" class="navHref active">Home</a>
+            <a href="#about" class="navHref">About Me</a>
+            <a href="#skills" class="navHref">Skills</a>
+            <a href="#projects" class="navHref">Project</a>
+            <a href="#contact" class="navHref">Contact Me</a>
+            <a href="" class="resumeBut">Resume</a>
+          </nav>
+          <p id="navIco" onclick="openNav()">
+            <ion-icon id="menuIcon" name="reorder-three-outline"></ion-icon>
+          </p>
         </div>
-      </div>
-    </section>
-    <section class="aboutSection" id="about">
-      <div class="aboutCon">
-        <div class="aboutBoxa">
-          <div class="profileCon">
-            <img src="aprofile.png" alt="Abhishek Mevada" />
+        <div class="herosectionCon">
+          <h1>
+            Hi, I'm <span class="h1spna">Abhishek</span> - <br /><span
+              id="text"
+              class="typing"
+              >Web Developer</span
+            >
+          </h1>
+          <p>
+            Building intelligent web experiences at the intersection of design,
+            data, and innovation.
+          </p>
+          <div class="herosecBox">
+            <a href="" class="heroBut">Projects</a>
+            <a href="" class="heroBut">Resume</a>
+            <a href="" class="heroBut">Contact Me</a>
           </div>
         </div>
-        <div class="aboutBoxb">
-          <h1>About Me</h1>
-          <p>
-            Hi, I'm Abhishek, passionate Web Developer and Data Science
-            enthusiast with a deep interest in Machine Learning. I enjoy
-            building modern, user-friendly web applications that combine great
-            design with meaningful functionality. My curiosity about how
-            technology works — from web interactions to the power of data — has
-            driven me to develop strong skills in front-end and back-end
-            development, data visualization, and predictive analytics. This
-            blend of skills allows me to bridge the gap between design and data,
-            creating digital solutions that are both visually engaging and
-            intelligently driven.<br /><br />I thrive on solving complex
-            problems, whether it’s optimizing website performance or uncovering
-            insights from large datasets. Beyond coding, I’m constantly learning
-            about emerging technologies, contributing to open-source projects,
-            and exploring ideas in AI and innovation. My goal is to keep growing
-            as a developer and data scientist — using creativity, logic, and
-            data to build smart, impactful solutions that make a real difference
-            in the world.
-          </p>
-          <!-- <p>
+      </section>
+      <section class="aboutSection" id="about">
+        <div class="aboutCon">
+          <div class="aboutBoxa">
+            <div class="profileCon">
+              <img src="aprofile.png" alt="Abhishek Mevada" />
+            </div>
+          </div>
+          <div class="aboutBoxb">
+            <h1>About Me</h1>
+            <p>
+              Hi, I'm Abhishek, passionate Web Developer and Data Science
+              enthusiast with a deep interest in Machine Learning. I enjoy
+              building modern, user-friendly web applications that combine great
+              design with meaningful functionality. My curiosity about how
+              technology works — from web interactions to the power of data —
+              has driven me to develop strong skills in front-end and back-end
+              development, data visualization, and predictive analytics. This
+              blend of skills allows me to bridge the gap between design and
+              data, creating digital solutions that are both visually engaging
+              and intelligently driven.<br /><br />I thrive on solving complex
+              problems, whether it’s optimizing website performance or
+              uncovering insights from large datasets. Beyond coding, I’m
+              constantly learning about emerging technologies, contributing to
+              open-source projects, and exploring ideas in AI and innovation. My
+              goal is to keep growing as a developer and data scientist — using
+              creativity, logic, and data to build smart, impactful solutions
+              that make a real difference in the world.
+            </p>
+            <!-- <p>
             Hi, I'm Abhishek Mevada — a passionate Web Developer and Data
             Science & Analytics enthusiast with a strong interest in Machine
             Learning. I love building modern, user-friendly web applications
@@ -643,404 +730,410 @@
             logic, and data to build intelligent solutions that make a
             real-world impact.
           </p> -->
-        </div>
-      </div>
-    </section>
-    <section class="skillSection" id="skills">
-      <h1>My Skills</h1>
-      <div class="skillContainer">
-        <h2>Frontend Languages</h2>
-        <div class="skillBox">
-          <div class="skillminBox">
-            <p>
-              <img
-                width="32"
-                height="32"
-                src="https://img.icons8.com/windows/32/html-5.png"
-                alt="html-5"
-              />
-            </p>
-            <p>HTML</p>
-          </div>
-          <div class="skillminBox">
-            <p>
-              <img
-                width="32"
-                height="32"
-                src="https://img.icons8.com/windows/32/css3-logo.png"
-                alt="css3-logo"
-              />
-            </p>
-            <p>CSS</p>
-          </div>
-          <div class="skillminBox">
-            <p>
-              <img
-                width="32"
-                height="32"
-                src="https://img.icons8.com/windows/32/js-squared.png"
-                alt="js-squared"
-              />
-            </p>
-            <p>JS</p>
-          </div>
-          <div class="skillminBox">
-            <p>
-              <img
-                width="32"
-                height="32"
-                src="https://img.icons8.com/windows/32/react-native.png"
-                alt="react-native"
-              />
-            </p>
-            <p>React</p>
-          </div>
-          <div class="skillminBox">
-            <p>
-              <img
-                width="32"
-                height="32"
-                src="https://img.icons8.com/ios/50/bootstrap.png"
-                alt="bootstrap"
-              />
-            </p>
-            <p>Bootstrap</p>
           </div>
         </div>
-        <h2>Backend Languages</h2>
-        <div class="skillBox">
-          <div class="skillminBox">
-            <p>
-              <img
-                width="32"
-                height="32"
-                src="https://img.icons8.com/windows/32/python.png"
-                alt="python"
-              />
-            </p>
-            <p>Python</p>
-          </div>
-          <div class="skillminBox">
-            <p>
-              <img
-                width="32"
-                height="32"
-                src="https://img.icons8.com/windows/32/py.png"
-                alt="py"
-              />
-            </p>
-            <p>Flask</p>
-          </div>
-          <div class="skillminBox">
-            <p>
-              <img
-                width="32"
-                height="32"
-                src="https://img.icons8.com/windows/32/node-js.png"
-                alt="node-js"
-              />
-            </p>
-            <p>Node</p>
-          </div>
-          <div class="skillminBox">
-            <p>
-              <img
-                width="32"
-                height="32"
-                src="https://img.icons8.com/windows/32/js.png"
-                alt="js"
-              />
-            </p>
-            <p>Express Js</p>
-          </div>
-        </div>
-        <h2>Databases</h2>
-        <div class="skillBox">
-          <div class="skillminBox">
-            <p>
-              <img
-                width="32"
-                height="32"
-                src="https://img.icons8.com/windows/32/mysql.png"
-                alt="mysql"
-              />
-            </p>
-            <p>MySql</p>
-          </div>
-          <div class="skillminBox">
-            <p>
-              <img
-                width="32"
-                height="32"
-                src="https://img.icons8.com/windows/32/py.png"
-                alt="py"
-              />
-            </p>
-            <p>MongoDb</p>
-          </div>
-          <div class="skillminBox">
-            <p>
-              <img
-                width="32"
-                height="32"
-                src="https://img.icons8.com/windows/32/node-js.png"
-                alt="node-js"
-              />
-            </p>
-            <p>Sqlite</p>
-          </div>
-        </div>
-        <h2>Data Science and Analysis</h2>
-        <div class="skillBox">
-          <div class="skillminBox">
-            <p>
-              <img
-                width="32"
-                height="32"
-                src="https://img.icons8.com/windows/32/mysql.png"
-                alt="mysql"
-              />
-            </p>
-            <p>Pandas</p>
-          </div>
-          <div class="skillminBox">
-            <p>
-              <img
-                width="32"
-                height="32"
-                src="https://img.icons8.com/windows/32/py.png"
-                alt="py"
-              />
-            </p>
-            <p>Matplotlib</p>
-          </div>
-          <div class="skillminBox">
-            <p>
-              <img
-                width="32"
-                height="32"
-                src="https://img.icons8.com/windows/32/node-js.png"
-                alt="node-js"
-              />
-            </p>
-            <p>Seaborn</p>
-          </div>
-          <div class="skillminBox">
-            <p>
-              <img
-                width="32"
-                height="32"
-                src="https://img.icons8.com/windows/32/node-js.png"
-                alt="node-js"
-              />
-            </p>
-            <p>TensorFlow</p>
-          </div>
-          <div class="skillminBox">
-            <p>
-              <img
-                width="32"
-                height="32"
-                src="https://img.icons8.com/windows/32/node-js.png"
-                alt="node-js"
-              />
-            </p>
-            <p>Keras</p>
-          </div>
-          <div class="skillminBox">
-            <p>
-              <img
-                width="32"
-                height="32"
-                src="https://img.icons8.com/windows/32/node-js.png"
-                alt="node-js"
-              />
-            </p>
-            <p>Scikit-learn</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="projectSection" id="projects">
-      <h1>My Projects</h1>
-      <div class="projectCon">
-        <div class="projectBox">
-          <div class="projectImgBox">
-            <img
-              src="ChatGPT Image May 30, 2025, 09_38_34 AM.png"
-              alt="E-Commerce"
-              class="projectImg"
-            />
-          </div>
-          <div class="projectBody">
-            <div class="projectminBox">
-              <h1>E-Commerce</h1>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
-              aliquam veniam error ullam sit pariatur! Sint omnis nihil
-              repellat. Aut culpa ex natus possimus commodi aperiam sunt sed
-              ratione placeat.
-            </p>
-            <div class="projectLanBox">
-              <p class="prolna">HTML</p>
-              <p class="prolna">CSS</p>
-              <p class="prolna">JS</p>
-              <p class="prolna">PYTHON</p>
-              <p class="prolna">FLASK</p>
-              <p class="prolna">SQLITE</p>
-            </div>
-            <a class="projectName">Visite Site</a>
-          </div>
-        </div>
-      </div>
-      <h1>My Clients</h1>
-      <div class="projectCon">
-        <div class="projectBox">
-          <div class="projectImgBox">
-            <img
-              src="ChatGPT Image May 30, 2025, 09_38_34 AM.png"
-              alt="E-Commerce"
-              class="projectImg"
-            />
-          </div>
-          <div class="projectBody">
-            <div class="projectminBox">
-              <h1>Connect Cables</h1>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
-              aliquam veniam error ullam sit pariatur! Sint omnis nihil
-              repellat. Aut culpa ex natus possimus commodi aperiam sunt sed
-              ratione placeat.
-            </p>
-            <div class="projectLanBox">
-              <p class="prolna">HTML</p>
-              <p class="prolna">CSS</p>
-              <p class="prolna">JS</p>
-            </div>
-            <a class="projectName">Visite Site</a>
-          </div>
-        </div>
-
-        <div class="projectBox">
-          <div class="projectImgBox">
-            <img
-              src="ChatGPT Image May 30, 2025, 09_38_34 AM.png"
-              alt="E-Commerce"
-              class="projectImg"
-            />
-          </div>
-          <div class="projectBody">
-            <div class="projectminBox">
-              <h1>Ratan Industries</h1>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
-              aliquam veniam error ullam sit pariatur! Sint omnis nihil
-              repellat. Aut culpa ex natus possimus commodi aperiam sunt sed
-              ratione placeat.
-            </p>
-            <div class="projectLanBox">
-              <p class="prolna">HTML</p>
-              <p class="prolna">CSS</p>
-              <p class="prolna">JS</p>
-            </div>
-            <a class="projectName">Visite Site</a>
-          </div>
-        </div>
-
-        <div class="projectBox">
-          <div class="projectImgBox">
-            <img
-              src="ChatGPT Image May 30, 2025, 09_38_34 AM.png"
-              alt="E-Commerce"
-              class="projectImg"
-            />
-          </div>
-          <div class="projectBody">
-            <div class="projectminBox">
-              <h1>Taxi Cab</h1>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
-              aliquam veniam error ullam sit pariatur! Sint omnis nihil
-              repellat. Aut culpa ex natus possimus commodi aperiam sunt sed
-              ratione placeat.
-            </p>
-            <div class="projectLanBox">
-              <p class="prolna">HTML</p>
-              <p class="prolna">CSS</p>
-              <p class="prolna">JS</p>
-            </div>
-            <a class="projectName">Visite Site</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="contectSection" id="contact">
-      <h1>Contact Me</h1>
-      <p style="text-align: center">
-        I’m always open to connecting, collaborating, or discussing new
-        opportunities in web development and data science. <br />Whether you
-        have a project idea, a question, or just want to say hello — feel free
-        to reach out!
-      </p>
-      <div class="contectCon">
-        <div class="contectBoxa">
-          <form action="">
-            <div class="formInputBox">
-              <p><ion-icon name="person-outline"></ion-icon></p>
-              <input
-                type="text"
-                placeholder="Name"
-                class="inputName"
-                required
-              />
-            </div>
-            <div class="formInputBox">
-              <p><ion-icon name="mail-outline"></ion-icon></p>
-              <input
-                type="email"
-                placeholder="Email"
-                class="inputName"
-                required
-              />
-            </div>
-            <textarea
-              type="text"
-              placeholder="Message..."
-              class="inputNameb"
-              required
-            ></textarea>
-            <button class="formButton">Let’s Build Something!</button>
-          </form>
-        </div>
-        <div class="contectBoxb">
-          <h2>Let’s Connect</h2>
-          <p>
-            Have a project in mind or just want to chat about tech, data, or web
-            development? Drop me a message — I’d love to hear from you!
-          </p>
-          <div class="conBoxj">
-            <div class="conjMin">
-              <p class="conjjIco"><ion-icon name="mail-outline"></ion-icon></p>
-              <a href="">abhishekmevada85@gmail.com</a>
-            </div>
-            <div class="conjMin">
-              <p class="conjjIco"><ion-icon name="call-outline"></ion-icon></p>
-              <a href="">+91 9510954023</a>
-            </div>
-            <div class="conjMin">
-              <p class="conjjIco">
-                <ion-icon name="location-outline"></ion-icon>
+      </section>
+      <section class="skillSection" id="skills">
+        <h1>My Skills</h1>
+        <div class="skillContainer">
+          <h2>Frontend Languages</h2>
+          <div class="skillBox">
+            <div class="skillminBox">
+              <p>
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/windows/32/html-5.png"
+                  alt="html-5"
+                />
               </p>
-              <a href="">Mansa, Gandhinagar, Gujarat</a>
+              <p>HTML</p>
+            </div>
+            <div class="skillminBox">
+              <p>
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/windows/32/css3-logo.png"
+                  alt="css3-logo"
+                />
+              </p>
+              <p>CSS</p>
+            </div>
+            <div class="skillminBox">
+              <p>
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/windows/32/js-squared.png"
+                  alt="js-squared"
+                />
+              </p>
+              <p>JS</p>
+            </div>
+            <div class="skillminBox">
+              <p>
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/windows/32/react-native.png"
+                  alt="react-native"
+                />
+              </p>
+              <p>React</p>
+            </div>
+            <div class="skillminBox">
+              <p>
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/ios/50/bootstrap.png"
+                  alt="bootstrap"
+                />
+              </p>
+              <p>Bootstrap</p>
+            </div>
+          </div>
+          <h2>Backend Languages</h2>
+          <div class="skillBox">
+            <div class="skillminBox">
+              <p>
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/windows/32/python.png"
+                  alt="python"
+                />
+              </p>
+              <p>Python</p>
+            </div>
+            <div class="skillminBox">
+              <p>
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/windows/32/py.png"
+                  alt="py"
+                />
+              </p>
+              <p>Flask</p>
+            </div>
+            <div class="skillminBox">
+              <p>
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/windows/32/node-js.png"
+                  alt="node-js"
+                />
+              </p>
+              <p>Node</p>
+            </div>
+            <div class="skillminBox">
+              <p>
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/windows/32/js.png"
+                  alt="js"
+                />
+              </p>
+              <p>Express Js</p>
+            </div>
+          </div>
+          <h2>Databases</h2>
+          <div class="skillBox">
+            <div class="skillminBox">
+              <p>
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/windows/32/mysql.png"
+                  alt="mysql"
+                />
+              </p>
+              <p>MySql</p>
+            </div>
+            <div class="skillminBox">
+              <p>
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/windows/32/py.png"
+                  alt="py"
+                />
+              </p>
+              <p>MongoDb</p>
+            </div>
+            <div class="skillminBox">
+              <p>
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/windows/32/node-js.png"
+                  alt="node-js"
+                />
+              </p>
+              <p>Sqlite</p>
+            </div>
+          </div>
+          <h2>Data Science and Analysis</h2>
+          <div class="skillBox">
+            <div class="skillminBox">
+              <p>
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/windows/32/mysql.png"
+                  alt="mysql"
+                />
+              </p>
+              <p>Pandas</p>
+            </div>
+            <div class="skillminBox">
+              <p>
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/windows/32/py.png"
+                  alt="py"
+                />
+              </p>
+              <p>Matplotlib</p>
+            </div>
+            <div class="skillminBox">
+              <p>
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/windows/32/node-js.png"
+                  alt="node-js"
+                />
+              </p>
+              <p>Seaborn</p>
+            </div>
+            <div class="skillminBox">
+              <p>
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/windows/32/node-js.png"
+                  alt="node-js"
+                />
+              </p>
+              <p>TensorFlow</p>
+            </div>
+            <div class="skillminBox">
+              <p>
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/windows/32/node-js.png"
+                  alt="node-js"
+                />
+              </p>
+              <p>Keras</p>
+            </div>
+            <div class="skillminBox">
+              <p>
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/windows/32/node-js.png"
+                  alt="node-js"
+                />
+              </p>
+              <p>Scikit-learn</p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <section class="projectSection" id="projects">
+        <h1>My Projects</h1>
+        <div class="projectCon">
+          <div class="projectBox">
+            <div class="projectImgBox">
+              <img
+                src="ChatGPT Image May 30, 2025, 09_38_34 AM.png"
+                alt="E-Commerce"
+                class="projectImg"
+              />
+            </div>
+            <div class="projectBody">
+              <div class="projectminBox">
+                <h1>E-Commerce</h1>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Assumenda aliquam veniam error ullam sit pariatur! Sint omnis
+                nihil repellat. Aut culpa ex natus possimus commodi aperiam sunt
+                sed ratione placeat.
+              </p>
+              <div class="projectLanBox">
+                <p class="prolna">HTML</p>
+                <p class="prolna">CSS</p>
+                <p class="prolna">JS</p>
+                <p class="prolna">PYTHON</p>
+                <p class="prolna">FLASK</p>
+                <p class="prolna">SQLITE</p>
+              </div>
+              <a class="projectName">Visite Site</a>
+            </div>
+          </div>
+        </div>
+        <h1>My Clients</h1>
+        <div class="projectCon">
+          <div class="projectBox">
+            <div class="projectImgBox">
+              <img
+                src="ChatGPT Image May 30, 2025, 09_38_34 AM.png"
+                alt="E-Commerce"
+                class="projectImg"
+              />
+            </div>
+            <div class="projectBody">
+              <div class="projectminBox">
+                <h1>Connect Cables</h1>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Assumenda aliquam veniam error ullam sit pariatur! Sint omnis
+                nihil repellat. Aut culpa ex natus possimus commodi aperiam sunt
+                sed ratione placeat.
+              </p>
+              <div class="projectLanBox">
+                <p class="prolna">HTML</p>
+                <p class="prolna">CSS</p>
+                <p class="prolna">JS</p>
+              </div>
+              <a class="projectName">Visite Site</a>
+            </div>
+          </div>
+
+          <div class="projectBox">
+            <div class="projectImgBox">
+              <img
+                src="ChatGPT Image May 30, 2025, 09_38_34 AM.png"
+                alt="E-Commerce"
+                class="projectImg"
+              />
+            </div>
+            <div class="projectBody">
+              <div class="projectminBox">
+                <h1>Ratan Industries</h1>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Assumenda aliquam veniam error ullam sit pariatur! Sint omnis
+                nihil repellat. Aut culpa ex natus possimus commodi aperiam sunt
+                sed ratione placeat.
+              </p>
+              <div class="projectLanBox">
+                <p class="prolna">HTML</p>
+                <p class="prolna">CSS</p>
+                <p class="prolna">JS</p>
+              </div>
+              <a class="projectName">Visite Site</a>
+            </div>
+          </div>
+
+          <div class="projectBox">
+            <div class="projectImgBox">
+              <img
+                src="ChatGPT Image May 30, 2025, 09_38_34 AM.png"
+                alt="E-Commerce"
+                class="projectImg"
+              />
+            </div>
+            <div class="projectBody">
+              <div class="projectminBox">
+                <h1>Taxi Cab</h1>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Assumenda aliquam veniam error ullam sit pariatur! Sint omnis
+                nihil repellat. Aut culpa ex natus possimus commodi aperiam sunt
+                sed ratione placeat.
+              </p>
+              <div class="projectLanBox">
+                <p class="prolna">HTML</p>
+                <p class="prolna">CSS</p>
+                <p class="prolna">JS</p>
+              </div>
+              <a class="projectName">Visite Site</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="contectSection" id="contact">
+        <h1>Contact Me</h1>
+        <p style="text-align: center">
+          I’m always open to connecting, collaborating, or discussing new
+          opportunities in web development and data science. <br />Whether you
+          have a project idea, a question, or just want to say hello — feel free
+          to reach out!
+        </p>
+        <div class="contectCon">
+          <div class="contectBoxa">
+            <form action="">
+              <div class="formInputBox">
+                <p><ion-icon name="person-outline"></ion-icon></p>
+                <input
+                  type="text"
+                  placeholder="Name"
+                  class="inputName"
+                  required
+                />
+              </div>
+              <div class="formInputBox">
+                <p><ion-icon name="mail-outline"></ion-icon></p>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  class="inputName"
+                  required
+                />
+              </div>
+              <textarea
+                type="text"
+                placeholder="Message..."
+                class="inputNameb"
+                required
+              ></textarea>
+              <button class="formButton">Let’s Build Something!</button>
+            </form>
+          </div>
+          <div class="contectBoxb">
+            <h2>Let’s Connect</h2>
+            <p>
+              Have a project in mind or just want to chat about tech, data, or
+              web development? Drop me a message — I’d love to hear from you!
+            </p>
+            <div class="conBoxj">
+              <div class="conjMin">
+                <p class="conjjIco">
+                  <ion-icon name="mail-outline"></ion-icon>
+                </p>
+                <a href="">abhishekmevada85@gmail.com</a>
+              </div>
+              <div class="conjMin">
+                <p class="conjjIco">
+                  <ion-icon name="call-outline"></ion-icon>
+                </p>
+                <a href="">+91 9510954023</a>
+              </div>
+              <div class="conjMin">
+                <p class="conjjIco">
+                  <ion-icon name="location-outline"></ion-icon>
+                </p>
+                <a href="">Mansa, Gandhinagar, Gujarat</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
     <script>
       const textElement = document.getElementById("text");
 
@@ -1113,6 +1206,34 @@
           menuIcon.setAttribute("name", "close-outline");
         }
       }
+
+      let num = 1;
+      const lodingCount = document.getElementById("lodingCount");
+      const lodingContainer = document.getElementById("lodingContainer");
+      const portfolioContainer = document.getElementById("portfolioContainer");
+
+      function startCounting() {
+        const interval = setInterval(() => {
+          lodingCount.textContent = num;
+          num++;
+
+          if (num > 100) {
+            clearInterval(interval);
+
+            // Fade out loading container
+            lodingContainer.classList.add("fade-out");
+
+            // After fade-out ends → hide loader + show portfolio
+            lodingContainer.addEventListener("animationend", () => {
+              lodingContainer.style.display = "none";
+              portfolioContainer.style.display = "block";
+              portfolioContainer.style.opacity = 1;
+            });
+          }
+        }, 70);
+      }
+
+      startCounting();
     </script>
   </body>
 </html>
