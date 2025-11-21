@@ -30,6 +30,7 @@
         height: 100%;
         background-color: #000000;
         width: 100%;
+        cursor: none;
       }
       .heroSection {
         position: relative;
@@ -201,6 +202,28 @@
         align-items: center;
         justify-content: center;
       }
+
+      .profileCon::before {
+        content: "";
+        position: absolute;
+        height: 300px;
+        width: 300px;
+        border-radius: 50%;
+        border: 3px solid royalblue;
+        animation: ring 2.5s infinite ease-out;
+        opacity: 0;
+      }
+
+      @keyframes ring {
+        0% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(1.2);
+          opacity: 0;
+        }
+      }
       .profileCon img {
         height: 300px;
         width: 300px;
@@ -337,14 +360,14 @@
         animation-range: entry 0% cover 20%;
         animation-timeline: view();
       }
-      @keyframes fadeIn {
+      @keyframes profadeInjj {
         from {
           opacity: 0;
-          transform: translateY(20px);
+          scale: 0.5;
         }
         to {
           opacity: 1;
-          transform: translateY(0);
+          scale: 1;
         }
       }
       /* Soft blur “light” background */
@@ -353,8 +376,8 @@
         position: absolute;
         bottom: 0;
         right: 0;
-        height: 100px;
-        width: 100px;
+        height: 70px;
+        width: 70px;
         background-color: #4b00ff;
         border-radius: 50%;
         filter: blur(16px); /* <— this gives your soft glow effect */
@@ -472,7 +495,6 @@
         color: black;
       }
       .inputName {
-        width: 100%;
         border: none;
         outline: none;
         font-size: 16px;
@@ -580,9 +602,6 @@
         gap: 10px;
         color: white;
       }
-      #lodingContainer h1 {
-        text-align: center;
-      }
       #lodingCount {
         font-family: "Orbitron", sans-serif;
         font-size: 170px;
@@ -591,10 +610,37 @@
         left: 10px;
         color: royalblue;
       }
+      #lodingContainer h1 {
+        text-align: center;
+      }
       .fade-out {
         animation: fadeOutAni 0.6s ease forwards;
       }
-
+      #cursorPointer {
+        position: fixed;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        border: 2px solid royalblue;
+        background-color: transparent;
+        transform: translate(-50%, -50%);
+        transition: transform 0.08s ease-out;
+        pointer-events: none;
+        cursor: none;
+        z-index: 999;
+        animation: glow 3s linear infinite;
+      }
+      @keyframes glow {
+        0% {
+          box-shadow: 0px 0px 15px transparent;
+        }
+        50% {
+          box-shadow: 0px 0px 20px royalblue;
+        }
+        100% {
+          box-shadow: 0px 0px 15px transparent;
+        }
+      }
       @keyframes fadeOutAni {
         from {
           opacity: 1;
@@ -624,7 +670,7 @@
           position: absolute;
           top: 50px;
           width: 96%;
-          
+          justify-content: center;
           backdrop-filter: blur(15px);
           border-radius: 5px;
           background-color: #000;
@@ -678,10 +724,7 @@
               >Web Developer</span
             >
           </h1>
-          <p>
-            Building intelligent web experiences at the intersection of design,
-            data, and innovation.
-          </p>
+          <p>Building Smart, Modern Web Solutions</p>
           <div class="herosecBox">
             <a href="" class="heroBut">Projects</a>
             <a href="" class="heroBut">Resume</a>
@@ -699,23 +742,13 @@
           <div class="aboutBoxb">
             <h1>About Me</h1>
             <p>
-              Hi, I'm Abhishek, passionate Web Developer and Data Science
-              enthusiast with a deep interest in Machine Learning. I enjoy
-              building modern, user-friendly web applications that combine great
-              design with meaningful functionality. My curiosity about how
-              technology works — from web interactions to the power of data —
-              has driven me to develop strong skills in front-end and back-end
-              development, data visualization, and predictive analytics. This
-              blend of skills allows me to bridge the gap between design and
-              data, creating digital solutions that are both visually engaging
-              and intelligently driven.<br /><br />I thrive on solving complex
-              problems, whether it’s optimizing website performance or
-              uncovering insights from large datasets. Beyond coding, I’m
-              constantly learning about emerging technologies, contributing to
-              open-source projects, and exploring ideas in AI and innovation. My
-              goal is to keep growing as a developer and data scientist — using
-              creativity, logic, and data to build smart, impactful solutions
-              that make a real difference in the world.
+              A passionate Web Developer and Data Science enthusiast skilled in
+              front-end, back-end, data visualization, and machine learning.
+              Enjoys building modern, user-friendly digital solutions that
+              combine great design with intelligent data-driven logic.
+              Continuously learning new technologies, solving complex problems,
+              contributing to open-source, and exploring AI innovation with the
+              goal of creating impactful, smart solutions.
             </p>
             <!-- <p>
             Hi, I'm Abhishek Mevada — a passionate Web Developer and Data
@@ -1142,7 +1175,7 @@
         </div>
       </section>
     </div>
-
+    <div id="cursorPointer"></div>
     <script>
       const textElement = document.getElementById("text");
 
@@ -1239,13 +1272,17 @@
               portfolioContainer.style.opacity = 1;
             });
           }
-        }, 70);
+        }, 20);
       }
 
       startCounting();
+
+      const cursorPointer = document.getElementById("cursorPointer");
+
+      document.addEventListener("mousemove", (e) => {
+        cursorPointer.style.left = e.clientX + "px";
+        cursorPointer.style.top = e.clientY + "px";
+      });
     </script>
   </body>
 </html>
-
-
-
